@@ -18,6 +18,12 @@ css_path = Path(__file__).parent / "assets" / "style.css"
 if css_path.exists():
     st.markdown(f"<style>{css_path.read_text()}</style>", unsafe_allow_html=True)
 
+# ── Data file paths ──────────────────────────────────────────────────────
+DATA_DIR = Path(__file__).parent / "data"
+DATA_DIR.mkdir(exist_ok=True)
+TEU_PATH  = DATA_DIR / "KPA MOMBASA PORT - 5YR Summary.xlsx"
+EXO_PATH  = DATA_DIR / "Exogenous Variables.xlsx"
+
 # ── Sidebar branding ────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown(
@@ -46,6 +52,35 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
+    # ── Data upload section ──────────────────────────────────────────────
+    st.markdown(
+        "<span style='font-family:Inter,sans-serif; font-size:0.8rem; "
+        "color:#94A3B8; font-weight:600; letter-spacing:0.05em'>📂 DATA FILES</span>",
+        unsafe_allow_html=True,
+    )
+    teu_upload = st.file_uploader(
+        "KPA TEU Summary (.xlsx)",
+        type=["xlsx"],
+        key="teu_upload",
+        help="Upload 'KPA MOMBASA PORT - 5YR Summary.xlsx'",
+    )
+    exo_upload = st.file_uploader(
+        "Exogenous Variables (.xlsx)",
+        type=["xlsx"],
+        key="exo_upload",
+        help="Upload 'Exogenous Variables.xlsx'",
+    )
+
+    if teu_upload:
+        TEU_PATH.write_bytes(teu_upload.read())
+        st.success("✅ TEU data saved")
+    if exo_upload:
+        EXO_PATH.write_bytes(exo_upload.read())
+        st.success("✅ Exogenous data saved")
+
+    st.markdown("<hr style='margin:0.5rem 0 1rem'>", unsafe_allow_html=True)
+
+
 # ── Hero Banner ──────────────────────────────────────────────────────────
 st.markdown(
     """
@@ -66,6 +101,22 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+# ── Data readiness check ─────────────────────────────────────────────────
+_teu_ok = TEU_PATH.exists()
+_exo_ok = EXO_PATH.exists()
+if not (_teu_ok and _exo_ok):
+    missing = []
+    if not _teu_ok:
+        missing.append("**KPA TEU Summary** (`KPA MOMBASA PORT - 5YR Summary.xlsx`)")
+    if not _exo_ok:
+        missing.append("**Exogenous Variables** (`Exogenous Variables.xlsx`)")
+    st.warning(
+        "⚠️ **Data files not found.** Upload the following files using the "
+        "📂 DATA FILES uploaders in the sidebar before navigating to any page:\n\n"
+        + "\n".join(f"- {m}" for m in missing),
+        icon="📂",
+    )
 
 # ── Quick Stats Row ──────────────────────────────────────────────────────
 st.markdown(
