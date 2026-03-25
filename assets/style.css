@@ -1,0 +1,380 @@
+/* ─── TradingView-inspired Terminal Theme ──────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Global ───────────────────────────────────────────────────────────── */
+html, body, [data-testid="stAppViewContainer"] {
+    background-color: #0B0F19 !important;
+    color: #94A3B8;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+/* subtle animated scanline overlay */
+[data-testid="stAppViewContainer"]::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg, transparent, transparent 2px, rgba(56,189,248,0.015) 2px, rgba(56,189,248,0.015) 4px
+    );
+    z-index: 9998;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #080C14 0%, #060A12 100%) !important;
+    border-right: 1px solid #1E293B;
+}
+[data-testid="stSidebar"]::after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 1px; height: 100%;
+    background: linear-gradient(180deg, #38BDF8 0%, transparent 60%);
+    opacity: 0.3;
+}
+
+/* ── Headers ──────────────────────────────────────────────────────────── */
+h1, h2, h3 {
+    font-family: 'Inter', 'Segoe UI', sans-serif !important;
+    color: #F8FAFC !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em;
+}
+h1 { font-size: 1.75rem !important; }
+h2 { font-size: 1.35rem !important; }
+h3 { font-size: 1.1rem !important; }
+
+/* ── Glassmorphism Panel ──────────────────────────────────────────────── */
+.glass-panel {
+    background: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ── Metric cards ─────────────────────────────────────────────────────── */
+[data-testid="stMetric"] {
+    background: linear-gradient(135deg, rgba(17,24,39,0.7) 0%, rgba(15,23,41,0.7) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    border-radius: 10px;
+    padding: 0.85rem 1.15rem;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.04), inset 0 1px 0 rgba(255,255,255,0.03);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+[data-testid="stMetric"]:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.1), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+[data-testid="stMetricValue"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    color: #38BDF8 !important;
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+[data-testid="stMetricLabel"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    color: #64748B !important;
+    font-size: 0.72rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+[data-testid="stMetricDelta"] > div {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.78rem !important;
+}
+
+/* ── DataFrames / tables ──────────────────────────────────────────────── */
+[data-testid="stDataFrame"] {
+    border: 1px solid #1E293B;
+    border-radius: 8px;
+    overflow: hidden;
+}
+[data-testid="stDataFrame"] th {
+    background-color: #111827 !important;
+    color: #38BDF8 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+[data-testid="stDataFrame"] td {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.82rem !important;
+    color: #CBD5E1 !important;
+}
+
+/* ── Buttons & Selectboxes ────────────────────────────────────────────── */
+.stButton > button {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
+    border: 1px solid #334155 !important;
+    color: #38BDF8 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+.stButton > button:hover {
+    border-color: #38BDF8 !important;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.2);
+    transform: translateY(-1px);
+}
+
+.stSelectbox > div > div {
+    background-color: #111827 !important;
+    border-color: #334155 !important;
+    color: #CBD5E1 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    border-radius: 8px !important;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────────── */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 0;
+    border-bottom: 1px solid #1E293B;
+}
+.stTabs [data-baseweb="tab"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.82rem;
+    color: #64748B;
+    border-bottom: 2px solid transparent;
+    padding: 0.5rem 1.15rem;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.stTabs [aria-selected="true"] {
+    color: #38BDF8 !important;
+    border-bottom-color: #38BDF8 !important;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+/* ── Expander ─────────────────────────────────────────────────────────── */
+[data-testid="stExpander"] {
+    background: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(30, 41, 59, 0.8);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+[data-testid="stExpander"]:hover {
+    border-color: rgba(56, 189, 248, 0.2);
+}
+
+/* ── Dividers ─────────────────────────────────────────────────────────── */
+hr {
+    border: none !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, #1E293B 20%, #334155 50%, #1E293B 80%, transparent) !important;
+    margin: 1rem 0 !important;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0B0F19; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #38BDF8; }
+
+/* ── Status badges ────────────────────────────────────────────────────── */
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.badge-pass {
+    background: rgba(52, 211, 153, 0.12);
+    color: #34D399;
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    text-shadow: 0 0 8px rgba(52, 211, 153, 0.3);
+}
+.badge-fail {
+    background: rgba(251, 113, 133, 0.12);
+    color: #FB7185;
+    border: 1px solid rgba(251, 113, 133, 0.25);
+    text-shadow: 0 0 8px rgba(251, 113, 133, 0.3);
+}
+.badge-info {
+    background: rgba(56, 189, 248, 0.12);
+    color: #38BDF8;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+.badge-warn {
+    background: rgba(251, 191, 36, 0.12);
+    color: #FBBF24;
+    border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+/* ── Hero / Banner ────────────────────────────────────────────────────── */
+.hero-banner {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(129, 140, 248, 0.06) 50%, rgba(251, 113, 133, 0.04) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-radius: 14px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: conic-gradient(from 0deg, transparent 0%, rgba(56,189,248,0.03) 25%, transparent 50%);
+    animation: hero-rotate 20s linear infinite;
+}
+@keyframes hero-rotate {
+    to { transform: rotate(360deg); }
+}
+.hero-banner h1 {
+    position: relative;
+    z-index: 1;
+}
+.hero-banner p, .hero-banner div {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Stat cards (custom HTML) ─────────────────────────────────────────── */
+.stat-card {
+    background: rgba(17, 24, 39, 0.55);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+.stat-card:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    transform: translateY(-2px);
+}
+.stat-card .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #38BDF8;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+.stat-card .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+}
+.stat-card .stat-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: #475569;
+    margin-top: 0.15rem;
+}
+
+/* ── Nav cards ────────────────────────────────────────────────────────── */
+.nav-card {
+    background: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(30, 41, 59, 0.8);
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+.nav-card:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.08);
+    transform: translateY(-2px);
+}
+.nav-card .nav-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+}
+.nav-card .nav-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #F8FAFC;
+}
+.nav-card .nav-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #64748B;
+    margin-top: 0.25rem;
+    line-height: 1.5;
+}
+
+/* ── Section header accent ────────────────────────────────────────────── */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+}
+.section-header .accent-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #38BDF8;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(56,189,248,0.5); }
+    50% { opacity: 0.5; box-shadow: 0 0 4px rgba(56,189,248,0.2); }
+}
+
+/* ── Winner highlight ─────────────────────────────────────────────────── */
+.winner-card {
+    background: linear-gradient(135deg, rgba(52,211,153,0.08) 0%, rgba(56,189,248,0.05) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.06);
+}
+
+/* ── Diagnostic result cards ──────────────────────────────────────────── */
+.diag-card {
+    background: rgba(17, 24, 39, 0.5);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(30, 41, 59, 0.8);
+}
+.diag-card.diag-pass { border-left: 3px solid #34D399; }
+.diag-card.diag-fail { border-left: 3px solid #FB7185; }
+.diag-card.diag-info { border-left: 3px solid #38BDF8; }
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+.footer-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: #334155;
+    text-align: center;
+    padding: 2rem 0 1rem;
+    letter-spacing: 0.05em;
+}
+
+/* ── Pulse animation for live indicators ──────────────────────────────── */
+.live-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #34D399;
+    box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+    animation: live-pulse 1.5s ease-in-out infinite;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+}
+@keyframes live-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
